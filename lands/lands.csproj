@@ -17,5 +17,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Views\LandsPage.cs" />
+    <Compile Remove="Models\Lands.cs" />
   </ItemGroup>
 </Project>
