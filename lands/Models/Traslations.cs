@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Lands.Models
+namespace lands.Models
 {
     public class Translations
     {

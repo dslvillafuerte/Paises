@@ -1,4 +1,4 @@
-﻿namespace Lands.Models
+﻿namespace lands.Models
 {
     using Newtonsoft.Json;
 
