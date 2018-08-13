@@ -3,16 +3,18 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              x:Class="lands.Views.LoginPage"
              Title="Inicio de Sesión"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}"
              >
     <ContentPage.Content>
-        <StackLayout Padding="20">
+        <ScrollView BindingContext="{Binding Login}">    
+        <StackLayout Padding="5">
             
-            <Image Source="onu" WidthRequest="140"></Image>
+            <Image Source="onu" WidthRequest="100"></Image>
 
             <Label Text="Ingrese Usuario y Password" HorizontalOptions="Center" >
       </Label>
             <Grid
-                Margin="0,20">
+                Margin="0,5">
                 
                 <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -24,13 +26,21 @@
                     Grid.Row = "0"
                     Grid.Column = "0"
                     Text="Usuario:" 
-                    HorizontalOptions="Center">
+
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    >
+
                 </Label>
 
                  <Entry 
                     Grid.Row = "0"
                     Grid.Column = "1"
-                    Placeholder="Usuario">
+                    Placeholder="Usuario"
+                        Text="{Binding UserName, Mode=TwoWay}"
+
+                        >
+
                     
                 </Entry>
 
@@ -38,14 +48,16 @@
                     Grid.Row = "1"
                     Grid.Column = "0"
                     Text="Pin:" 
-
+                    VerticalOptions ="Center"
                     HorizontalOptions="Center">
                 </Label>
 
                  <Entry 
                     Grid.Row = "1"
                     Grid.Column = "1"
-                    Placeholder="Pin" Keyboard="Numeric" IsPassword="true">
+                    Placeholder="Pin" Keyboard="Numeric" IsPassword="true"
+                    Text="{Binding Pin, Mode=TwoWay}"
+                        >
                     
                 </Entry>
 
@@ -54,11 +66,17 @@
 
             <StackLayout Orientation = "Horizontal">
             <Label VerticalOptions="Center" HorizontalOptions="StartAndExpand"
-                Text="Recordarme en este dispositivo">
+                Text="Recordarme en este dispositivo"
+                   
+
+                   >
 
             </Label>
             <Switch
-                HorizontalOptions="End"></Switch>
+                HorizontalOptions="End"
+                        IsToggled="{Binding IsRemember, Mode=TwoWay}"
+
+                    ></Switch>
             </StackLayout>
                 
                  <Label VerticalOptions="Center" HorizontalOptions="CenterAndExpand"
@@ -69,25 +87,45 @@
             </Label>
            
             
-            <ActivityIndicator></ActivityIndicator>
+            <ActivityIndicator
+                   VerticalOptions="CenterAndExpand"
+                    IsRunning="{Binding IsRunning, Mode=TwoWay}"
+                ></ActivityIndicator>
 
-            <StackLayout
+            <StackLayout Orientation="Horizontal"
                 Margin="30,0">
-            <Button BorderRadius="20" 
-                    HeightRequest="46"
-                    Text="Ingresar" BackgroundColor="Navy" TextColor="White"></Button>
+                <Button 
+                        HorizontalOptions="FillAndExpand"
+                        BorderRadius="20" 
+                        HeightRequest="46"
+                        Text="Ingresar" 
+                            BackgroundColor="Navy" 
+                          TextColor="White"
+                        Command="{Binding LoggingCommand}"
+                        IsEnabled="{Binding IsEnabled, Mode=TwoWay}"
+                        >
+                            
+                        </Button>
              <Button BorderRadius="20" 
+                     HorizontalOptions="FillAndExpand"
                      HeightRequest="46"
-                     Text="Registrarte" BackgroundColor="Purple" TextColor="White"></Button>
+                     Text="Registrarte" BackgroundColor="Purple" 
+                     Command="{Binding RegisterCommand}"
+                     TextColor="White"
+                     IsEnabled="{Binding IsEnabled, Mode=TwoWay}"
+                     ></Button>
             </StackLayout>
 
             <StackLayout Margin="10" Orientation="Horizontal" HorizontalOptions="Center">
-                <Image Source="facebook_logo" WidthRequest="100"></Image>
+                <Image Source="facebook_logo" WidthRequest="100"
+
+                       ></Image>
                 <Image Source="twitter_logo" WidthRequest="100"></Image>
                 <Image Source="instagram_logo" WidthRequest="90"></Image>
                 
             </StackLayout>
             
         </StackLayout>
+            </ScrollView>
     </ContentPage.Content>
 </ContentPage>
